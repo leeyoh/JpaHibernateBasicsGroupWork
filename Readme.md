@@ -19,100 +19,87 @@ Everyone should keep in mind the following
     * Simplify
 
 
-
-## Student (Teacher's example)
-
-**Phase 1 Features**:
-* The user is prompted for a student's name and date of birth. The system assigns their primary teacher.
-* The user's input is saved to a database.
-* The user can then enter another student's information.
-* The user can then view all students.
-
-***Phase 1 Stretch***:
-* The user can search for students by name.
-
-**Phase 2 Features**:
-* The user can search for restaurants by name and location.
-* The user can select a restaurant and is then prompted for dish information (dish name, price, description, and a review (0 to 5 stars).
-* The user can select a restaurant see all the dishes at that restaurant.
-* One unit test
-
-## Restaurant
-
-**Phase 1 Features**:
-* The user is prompted for a restaurant name, its location, and a review (0 to 5 stars).
-* The user's input is saved to a database.
-* The user can then enter another restaurant's information.
-* The user can also see all restaurants (ordered by review high to low).
-
-***Phase 1 Stretch***:
-* The user can search for restaurants by name and location.
-
-**Phase 2 Features**:
-* The user can search for restaurants by name and location.
-* The user can select a restaurant and is then prompted for dish information (dish name, price, description, and a review (0 to 5 stars).
-* The user can select a restaurant see all the dishes at that restaurant.
-* One unit test
-
-
-
-## Sports
-
-**Phase 1 Features**:
-* Developers choose a sport.
-* The user is prompted for an athlete's name, score in game, other statistics that make sense for your chosen sport.
-* The user's input is saved to a database.
-* The user can then enter another game of statistics for that same athlete.
-* The user can request average number of points, max number of points in a game, etc.
-
-***Phase 1 Stretch***:
-* The user can input information for multiple athletes.
-
-**Phase 2 Features**:
-* The user can input information for multiple athletes.
-* The athletes will have a 'team' property.
-* The user can search for athletes by name.
-* The user can search for athletes by team.
-* The user can request average number of points, etc, for a team.
-* One unit test
-
-
-## Code Snippets
-
-**Phase 1 Features**:
-* The user is prompted for a snippet of code, a title for that snippet, a description of that snippet.
-* The user's input is saved to a database.
-* The user can then enter another snippet.
-* The user can search for snippets by title.
-
-***Phase 1 Stretch***:
-* The user is prompted for 'tags' for that snippet (easily searchable terms).
-
-**Phase 2 Features**:
-* The user is prompted for 'tags' for that snippet (easily searchable terms).
-* The user can search for snippets by tag.
-* The user can delete snippets.
-* The user can edit snippets.
-* The user can choose a color for each snippet. The snippet will then display in that color for the user.
-* One unit test
-
 ## Bank Account
+Tables 
+
+User  
+ID | Address | Name 
+1  | 1address | Jay 
+
+Account 
+ID | Balance ( Any Double (neg or positive))
+1  | 100 
+2  | 200 
+3  | 159
+4  | 123
+
+Transaction_history 
+account_id | amount | balance | where (enum)   | source id 
+1          | 50     | 50      | transfer       | 2 
+2          | -50    | -50     | transfer 
+1          | 1      | 101     | deposit        | 
+2          |        |         | transfer       | 1 
+3          |        |         | withdraw 
+
+User_Account 
+User_ID | Account_ID
+1       | 1
+1       | 2
+1       | 3
 
 **Phase 1 Features**:
 * The user is prompted for name, address, initial deposit amount.
+* // User Class 
+* // - Name ( String)
+* // - Address (String)
+* // - Accounts ( Map < String, Account> ), < Name of the account, Account handle> 
+
+* // Account Class 
+* // -  Initial Deposit ( Numeric )
+
 * The user's input is saved to a database.
+* // Class mapped to entity 
+
 * The user can deposit money.
+* // Select then update
+* // Lookup way to do both at the same time. Update ( field += value)
+
 * The user can withdraw money.
+* // Select then update 
+* // Lookup way to do both, if the balance is negative do something. 
+
 * The user can see how much money is in their account.
+* // Query, select 
+
 * The user can create another account.
+* // - Create account -> initial balance -> link the account to the user, and the tables need to be updated. 
 
 ***Phase 1 Stretch***:
 * The user can transfer money between accounts.
+* // Select -> list all accounts and balances
+* // Fetch the first user in the table *it should be replaced with fetch all users, and prompt user to select. 
+* -- User has been selected 
+* List all accounts that belong to the user. 
+* SELECT * FROM user 
+* JOIN user_to_account ON user.ID = user_to_account.user_ID
+* JOIN account ON user_to_account.account_ID = account.ID 
+// ^ will return all balances and id 
+
+var account1, account2
+* // Prompt first account 
+* List all accounts, put selected account as account 1
+* // Prompt second account 
+* List all remaining accounts, put selected account on account 2
+//DO MATH
+* // prompt amount ( error handling for unsupported balances.)
+UPDATE the accounts with the new balances. If the math works. 
+* UPDATE balance FROM account_table WHERE id = account ID
+* x2 
 
 **Phase 2 Features**:
-* The user can transfer money between accounts.
 * The user can see a record of all deposits and withdrawals and transfers from their accounts.
 * The user sees their balance in red if it is negative and green if it is positive.
+* //Color code according to balance 
 * One unit test
-
+* Unit test to verify account deposit.
 
