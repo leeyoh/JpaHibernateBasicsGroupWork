@@ -27,25 +27,42 @@ ID | Address | Name
 1  | 1address | Jay 
 
 Account 
-ID | Balance ( Any Double (neg or positive))
-1  | 100 
+ID | Balance ( Any Double (neg or positive)) | account creation Date 
+1  | 100                                     | 
 2  | 200 
 3  | 159
 4  | 123
 
 Transaction_history 
-account_id | amount | balance | where (enum)   | source id 
-1          | 50     | 50      | transfer       | 2 
+account_id | amount | balance | where (enum)   | source id | Time Stamp
+1          | 50     | 50      | transfer       | 2         | 
 2          | -50    | -50     | transfer 
 1          | 1      | 101     | deposit        | 
 2          |        |         | transfer       | 1 
 3          |        |         | withdraw 
 
-User_Account 
+User_to_Account 
 User_ID | Account_ID
 1       | 1
 1       | 2
 1       | 3
+
+-----
+Main logic loop 
+
+1. User is prompted for name, address. ( only shown once )
+   1. Create the account
+   2. Create initial balance 
+
+Store new account, user, user to account, transaction ( create)
+
+If there are accounts in the database,  
+      Select Account ( only shown if there are accounts)
+      Create account
+      Deposit
+      Widthdraw
+      Transfer
+
 
 **Phase 1 Features**:
 * The user is prompted for name, address, initial deposit amount.
